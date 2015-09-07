@@ -127,13 +127,27 @@
 }
 
 
+- (CGPoint)arrowTipLocation
+{
+  CGPoint res = CGPointMake(0, 0);
+  double hyp = (double)m_arrow.frame.size.height;
+  double ang = self.zRotation;
+  double opp = cos(ang) * hyp;
+  double adj = sin(ang) * hyp;
+  
+  res = CGPointMake(self.position.x - adj, self.position.y + opp);
+  
+  return res;
+}
+
+
 - (BOOL)isTouchOnFan:(UITouch *)aTouch
 {
   CGPoint location = [aTouch locationInNode:self.parent];
-  SKNode* n = [self.parent nodeAtPoint:location];
+  CGPoint tip = [self arrowTipLocation];
+  float dist = sqrtf(powf(tip.x - location.x, 2) + powf(tip.y - location.y, 2));
   
-  if (n.physicsBody == self.physicsBody ||
-      n.physicsBody == m_arrow.physicsBody)
+  if (dist < 65)
   {
     return YES;
   }

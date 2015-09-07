@@ -32,7 +32,6 @@
     srand((unsigned int)time(NULL));
     
     m_gameTouches = [NSMutableArray array];
-    m_winds = [NSMutableArray array];
     
     self.physicsWorld.contactDelegate = self;
     
@@ -116,13 +115,6 @@
   bodyA = contact.bodyA;
   bodyB = contact.bodyB;
   
-  if ((bodyA.categoryBitMask == windCategory && bodyB.categoryBitMask == playerCategory))
-  {
-    nt_fan * f = [self fanForWindBody:bodyA];
-    nt_wind* w = [nt_wind windWithObject:m_player fan:f];
-    [m_winds addObject:w];
-  }
-  
   if ((bodyA.categoryBitMask == playerCategory && bodyB.categoryBitMask == fanCategory) ||
       (bodyA.categoryBitMask == fanCategory && bodyB.categoryBitMask == playerCategory))
   {
@@ -138,25 +130,7 @@
   bodyA = contact.bodyA;
   bodyB = contact.bodyB;
   
-  if ((bodyA.categoryBitMask == windCategory && bodyB.categoryBitMask == playerCategory))
-  {
-    nt_fan * f = [self fanForWindBody:bodyA];
-    nt_wind* wind = nil;
-    
-    for (nt_wind* w in m_winds)
-    {
-      if (w.object == m_player && w.fan == f)
-      {
-        wind = w;
-        break;
-      }
-    }
-    
-    if (wind != nil)
-    {
-      [m_winds removeObject:wind];
-    }
-  }
+  
 }
 
 
@@ -168,12 +142,11 @@
   
   for (UITouch *touch in touches)
   {
-    CGPoint location = [touch locationInNode:self];
-    SKNode* n = [self nodeAtPoint:location];
+    nt_object* o = [self objectClosestToTouch:touch];
     
-    if (n != nil && [n isKindOfClass:[nt_object class]])
+    if (o != nil && [self distanceFromObject:o atPoint:[touch locationInNode:self]] < OBJECT_DISTANCE_THRESHOLD)
     {
-      nt_touch* t = [nt_touch touchWithObject:(nt_object *)n touch:touch];
+      nt_touch* t = [nt_touch touchWithObject:o touch:touch];
       [m_gameTouches addObject:t];
     }
     
@@ -210,14 +183,14 @@
       nt_object * obj = objtouch.object;
       float angleInDegrees =      [self angleOnObject:obj atPoint:location];
       float prevAngleInDegrees =  [self angleOnObject:obj atPoint:prevLocation];
-      float distance = [self distanceFromObject:obj atPoint:location];
+      float distance =            [self distanceFromObject:obj atPoint:location];
       float changeInAngle =       angleInDegrees - prevAngleInDegrees;
       
       if ([obj isKindOfClass:[nt_fan class]])
       {
         nt_fan* f = (nt_fan *)obj;
         
-        if (distance > 50.0f)
+        if (distance > OBJECT_DISTANCE_THRESHOLD)
         {
           [f setZRotation:f.zRotation + changeInAngle*(M_PI/180)];
         }
@@ -281,9 +254,16 @@
 
 - (void)update:(CFTimeInterval)currentTime
 {
-  for (nt_wind* w in m_winds)
+  NSArray* bodies = m_player.physicsBody.allContactedBodies;
+  
+  for (SKPhysicsBody* b in bodies)
   {
-    [w blow];
+    nt_fan* f = [self fanForWindBody:b];
+    
+    if (f != nil)
+    {
+      [f updateOnObject:m_player];
+    }
   }
 }
 

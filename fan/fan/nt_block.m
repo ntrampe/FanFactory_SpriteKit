@@ -40,8 +40,8 @@
         
         path = CGPathCreateMutable();
         
-        CGPathMoveToPoint(path, NULL, 42 - offsetX, 83 - offsetY);
-        CGPathAddLineToPoint(path, NULL, 84 - offsetX, 2 - offsetY);
+        CGPathMoveToPoint(path, NULL, 22 - offsetX, 41 - offsetY);
+        CGPathAddLineToPoint(path, NULL, 42 - offsetX, 2 - offsetY);
         CGPathAddLineToPoint(path, NULL, 0 - offsetX, 2 - offsetY);
         
         CGPathCloseSubpath(path);
@@ -53,8 +53,8 @@
         
         path = CGPathCreateMutable();
         
-        CGPathMoveToPoint(path, NULL, 0 - offsetX, 84 - offsetY);
-        CGPathAddLineToPoint(path, NULL, 81 - offsetX, 2 - offsetY);
+        CGPathMoveToPoint(path, NULL, 0 - offsetX, 42 - offsetY);
+        CGPathAddLineToPoint(path, NULL, 40 - offsetX, 2 - offsetY);
         CGPathAddLineToPoint(path, NULL, 0 - offsetX, 2 - offsetY);
         
         CGPathCloseSubpath(path);

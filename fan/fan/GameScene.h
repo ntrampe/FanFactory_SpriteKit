@@ -14,13 +14,11 @@
 #import "nt_coin.h"
 #import "nt_fan.h"
 #import "nt_touch.h"
-#import "nt_wind.h"
 #import "nt_level.h"
 
 @interface GameScene : LevelScene <SKPhysicsContactDelegate>
 {
   NSMutableArray * m_gameTouches;
-  NSMutableArray * m_winds;
   
   nt_player* m_player;
 }

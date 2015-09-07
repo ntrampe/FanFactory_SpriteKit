@@ -29,6 +29,7 @@
 - (BOOL)containsWind:(SKPhysicsBody *)aWind;
 - (void)updateOnObject:(nt_object *)aObject;
 
+- (CGPoint)arrowTipLocation;
 - (BOOL)isTouchOnFan:(UITouch *)aTouch;
 
 @end
