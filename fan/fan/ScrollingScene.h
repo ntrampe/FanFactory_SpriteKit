@@ -15,5 +15,6 @@
   SKCameraNode * m_camera;
 }
 @property (readonly) BOOL isPanning;
+@property (readwrite, nonatomic) float maxScale, minScale;
 
 @end

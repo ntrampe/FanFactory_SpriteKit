@@ -254,6 +254,8 @@
 
 - (void)update:(CFTimeInterval)currentTime
 {
+  [super update:currentTime];
+  
   NSArray* bodies = m_player.physicsBody.allContactedBodies;
   
   for (SKPhysicsBody* b in bodies)

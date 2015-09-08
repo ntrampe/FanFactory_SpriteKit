@@ -19,12 +19,15 @@
   {
     m_touches = [NSMutableArray array];
     m_camera = [SKCameraNode node];
+
+    
+    [m_camera setPosition:CGPointMake(size.width / 2, 60)];
+    [m_camera setConstraints:@[[SKConstraint positionX:[SKRange rangeWithConstantValue:self.frame.size.width] Y:[SKRange rangeWithConstantValue:self.frame.size.height]]]];
     
     self.camera = m_camera;
     
-//    [self.camera setScale:0.5];
-    
-    [self.camera setPosition:CGPointMake(size.width / 2, 60)];
+    self.maxScale = 2.0f;
+    self.minScale = 0.5f;
   }
   
   return self;
@@ -64,17 +67,20 @@
     
     if (newScale != prevScale)
     {
-      [self.camera setScale:newScale];
-      
-      CGFloat deltaX = (curPosLayer.x - self.anchorPoint.x * self.frame.size.width) * (self.camera.xScale - prevScale);
-      CGFloat deltaY = (curPosLayer.y - self.anchorPoint.y * self.frame.size.height) * (self.camera.xScale - prevScale);
-      self.camera.position = CGPointMake(self.camera.position.x + deltaX, self.camera.position.y + deltaY);
+      if (newScale <= self.maxScale && newScale >= self.minScale)
+      {
+        [self.camera setScale:newScale];
+        
+        CGFloat deltaX = (curPosLayer.x - self.anchorPoint.x * self.frame.size.width) * (self.camera.xScale - prevScale);
+        CGFloat deltaY = (curPosLayer.y - self.anchorPoint.y * self.frame.size.height) * (self.camera.xScale - prevScale);
+        self.camera.position = CGPointMake(self.camera.position.x - deltaX/2.0f, self.camera.position.y - deltaY/2.0f);
+      }
     }
     
     if (!CGPointEqualToPoint(prevPosLayer, curPosLayer))
     {
 //      CGPoint percent = CGPointMake(((m_maxStretch.x - m_stretch.x)/m_maxStretch.x), ((m_maxStretch.y - m_stretch.y)/m_maxStretch.y));
-      CGPoint delta = CGPointMake((curPosLayer.x - prevPosLayer.x), (curPosLayer.y - prevPosLayer.y));
+      CGPoint delta = CGPointMake((curPosLayer.x - prevPosLayer.x) / 2.0f, (curPosLayer.y - prevPosLayer.y) / 2.0f);
       CGPoint pos = self.camera.position;
       
       pos.x = pos.x - delta.x;
@@ -88,6 +94,7 @@
     CGPoint location = [[m_touches objectAtIndex:0] locationInNode:self];
     CGPoint prevLocation =  [[m_touches objectAtIndex:0] previousLocationInNode:self];
     CGPoint deltaPos = CGPointMake(location.x - prevLocation.x, location.y - prevLocation.y);
+    
     [self.camera setPosition:CGPointMake(self.camera.position.x - deltaPos.x, self.camera.position.y - deltaPos.y)];
   }
 }
@@ -97,6 +104,12 @@
 {
   for (UITouch *touch in touches)
     [m_touches removeObject:touch];
+}
+
+
+- (void)update:(NSTimeInterval)currentTime
+{
+  
 }
 
 
