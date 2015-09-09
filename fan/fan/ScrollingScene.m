@@ -8,6 +8,12 @@
 
 #import "ScrollingScene.h"
 
+@interface ScrollingScene (Private)
+
+- (void)updateConstraints;
+
+@end
+
 @implementation ScrollingScene
 @synthesize isPanning = m_panning;
 
@@ -19,24 +25,44 @@
   {
     m_touches = [NSMutableArray array];
     m_camera = [SKCameraNode node];
-
+    m_originalSize = size;
+    m_velocity = CGPointZero;
     
-    [m_camera setPosition:CGPointMake(size.width / 2, 60)];
-    [m_camera setConstraints:@[[SKConstraint positionX:[SKRange rangeWithConstantValue:self.frame.size.width] Y:[SKRange rangeWithConstantValue:self.frame.size.height]]]];
+    [self addChild:m_camera];
     
     self.camera = m_camera;
     
+    self.zooms = YES;
+    self.bounded = YES;
     self.maxScale = 2.0f;
     self.minScale = 0.5f;
+    
+    [self updateConstraints];
   }
   
   return self;
 }
 
 
+- (void)didMoveToView:(SKView *)view
+{
+  [super didMoveToView:view];
+  
+}
+
+
+- (void)setZoom:(CGFloat)aZoom
+{
+  [self.camera setScale:aZoom];
+  
+  [self updateConstraints];
+}
+
+
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
   m_panning = NO;
+  m_touching = YES;
   
   for (UITouch *touch in touches)
     [m_touches addObject:touch];
@@ -47,8 +73,8 @@
 {
   m_panning = YES;
     
-  if (m_touches.count > 1)
-  {
+  if (m_touches.count > 1 && self.zooms)
+  { 
     UITouch * touch1 = [m_touches objectAtIndex:0];
     UITouch * touch2 = [m_touches objectAtIndex:1];
     CGPoint curPosTouch1 = [touch1 locationInNode:self];
@@ -69,10 +95,10 @@
     {
       if (newScale <= self.maxScale && newScale >= self.minScale)
       {
-        [self.camera setScale:newScale];
+        [self setZoom:newScale];
         
-        CGFloat deltaX = (curPosLayer.x - self.anchorPoint.x * self.frame.size.width) * (self.camera.xScale - prevScale);
-        CGFloat deltaY = (curPosLayer.y - self.anchorPoint.y * self.frame.size.height) * (self.camera.xScale - prevScale);
+        CGFloat deltaX = (curPosLayer.x - self.frame.size.width) * (self.camera.xScale - prevScale);
+        CGFloat deltaY = (curPosLayer.y - self.frame.size.height) * (self.camera.xScale - prevScale);
         self.camera.position = CGPointMake(self.camera.position.x - deltaX/2.0f, self.camera.position.y - deltaY/2.0f);
       }
     }
@@ -80,7 +106,7 @@
     if (!CGPointEqualToPoint(prevPosLayer, curPosLayer))
     {
 //      CGPoint percent = CGPointMake(((m_maxStretch.x - m_stretch.x)/m_maxStretch.x), ((m_maxStretch.y - m_stretch.y)/m_maxStretch.y));
-      CGPoint delta = CGPointMake((curPosLayer.x - prevPosLayer.x) / 2.0f, (curPosLayer.y - prevPosLayer.y) / 2.0f);
+      CGPoint delta = CGPointMake((curPosLayer.x - prevPosLayer.x), (curPosLayer.y - prevPosLayer.y));
       CGPoint pos = self.camera.position;
       
       pos.x = pos.x - delta.x;
@@ -102,14 +128,77 @@
 
 - (void)touchesEnded:(nonnull NSSet<UITouch *> *)touches withEvent:(nullable UIEvent *)event
 {
+  m_touching = NO;
+  
   for (UITouch *touch in touches)
     [m_touches removeObject:touch];
+  
 }
 
 
 - (void)update:(NSTimeInterval)currentTime
 {
+  [super update:currentTime];
   
+  float friction = 0.98f;
+  static CGPoint lastPos = (CGPoint){0,0};
+  
+  if (!m_touching)
+  {  
+    m_velocity.x *= friction;
+    m_velocity.y *= friction;
+    
+    CGPoint pos = self.camera.position;
+    
+    pos.x += m_velocity.x;
+    pos.y += m_velocity.y;
+    
+    self.camera.position = pos;
+    
+    if (fabs(m_velocity.x) <= 0.5 && fabs(m_velocity.y) <= 0.5)
+    {
+      m_velocity = CGPointMake(0, 0);
+    }
+  }
+  else
+  {
+    m_velocity.x = (self.camera.position.x - lastPos.x);
+    m_velocity.y = (self.camera.position.y - lastPos.y);
+  }
+  
+  lastPos = self.camera.position;
+}
+
+
+- (void)setBounded:(BOOL)bounded
+{
+  _bounded = bounded;
+  
+  [self updateConstraints];
+}
+
+
+- (void)updateConstraints
+{
+  if (!self.bounded)
+  {
+    [self.camera setConstraints:nil];
+    return;
+  }
+  
+  CGSize screenSize = [[UIScreen mainScreen] bounds].size;
+  
+  CGFloat left = (screenSize.width / 2.0)*self.camera.xScale;
+  CGFloat right = m_originalSize.width - (screenSize.width / 2.0)*self.camera.yScale;
+  CGFloat bottom = (screenSize.height / 2.0)*self.camera.xScale;
+  CGFloat top = m_originalSize.height - (screenSize.height / 2.0)*self.camera.yScale;
+  
+  //NSLog(@"%.2f, %.2f, %.2f, %.2f", left, right, bottom, top);
+  
+  [self.camera setConstraints:@[[SKConstraint positionX:[SKRange rangeWithLowerLimit:left
+                                                                          upperLimit:right]
+                                                      Y:[SKRange rangeWithLowerLimit:bottom
+                                                                          upperLimit:top]]]];
 }
 
 

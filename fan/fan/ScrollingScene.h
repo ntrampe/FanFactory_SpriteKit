@@ -11,10 +11,16 @@
 @interface ScrollingScene : SKScene
 {
   NSMutableArray * m_touches;
-  BOOL m_panning;
   SKCameraNode * m_camera;
+  BOOL m_panning;
+  BOOL m_touching;
+  CGPoint m_velocity;
+  CGSize m_originalSize;
 }
+@property (readwrite, nonatomic) BOOL zooms, bounded;
 @property (readonly) BOOL isPanning;
 @property (readwrite, nonatomic) float maxScale, minScale;
+
+- (void)setZoom:(CGFloat)aZoom;
 
 @end

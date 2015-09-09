@@ -21,12 +21,12 @@
 		E1286BC21B9D2DF1008704FD /* LevelScene.m in Sources */ = {isa = PBXBuildFile; fileRef = E1286BC11B9D2DF1008704FD /* LevelScene.m */; settings = {ASSET_TAGS = (); }; };
 		E154F7B91B9E28100070AF43 /* LevelCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E154F7B81B9E28100070AF43 /* LevelCollectionViewCell.m */; settings = {ASSET_TAGS = (); }; };
 		E177F53B1B67B71F0015A78D /* nt_coin.m in Sources */ = {isa = PBXBuildFile; fileRef = E177F53A1B67B71F0015A78D /* nt_coin.m */; };
+		E18FB21F1BA08DAE003867B3 /* nt_goal.m in Sources */ = {isa = PBXBuildFile; fileRef = E18FB21E1BA08DAE003867B3 /* nt_goal.m */; settings = {ASSET_TAGS = (); }; };
 		E1A7B34C1B9E209B00695E8D /* nt_filemanager.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A7B34B1B9E209B00695E8D /* nt_filemanager.m */; settings = {ASSET_TAGS = (); }; };
 		E1A7B34F1B9E20D000695E8D /* LevelController.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A7B34E1B9E20D000695E8D /* LevelController.m */; settings = {ASSET_TAGS = (); }; };
 		E1A7B3511B9E20F800695E8D /* levels in Resources */ = {isa = PBXBuildFile; fileRef = E1A7B3501B9E20F800695E8D /* levels */; settings = {ASSET_TAGS = (); }; };
 		E1A7B3541B9E21FD00695E8D /* PackViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A7B3531B9E21FD00695E8D /* PackViewController.m */; settings = {ASSET_TAGS = (); }; };
 		E1C21C9F1B9CB3E300F387F7 /* nt_level.m in Sources */ = {isa = PBXBuildFile; fileRef = E1C21C9E1B9CB3E300F387F7 /* nt_level.m */; settings = {ASSET_TAGS = (); }; };
-		E1C21CA11B9CBADE00F387F7 /* 24.plist in Resources */ = {isa = PBXBuildFile; fileRef = E1C21CA01B9CBADE00F387F7 /* 24.plist */; settings = {ASSET_TAGS = (); }; };
 		E1C21CA51B9CDF2E00F387F7 /* nt_alert.m in Sources */ = {isa = PBXBuildFile; fileRef = E1C21CA41B9CDF2E00F387F7 /* nt_alert.m */; settings = {ASSET_TAGS = (); }; };
 		E1C21CA81B9CE3A400F387F7 /* UIImage+ImageEffects.m in Sources */ = {isa = PBXBuildFile; fileRef = E1C21CA71B9CE3A400F387F7 /* UIImage+ImageEffects.m */; settings = {ASSET_TAGS = (); }; };
 		E1D6F0751B65B4E500FAF85F /* nt_fanCollision.m in Sources */ = {isa = PBXBuildFile; fileRef = E1D6F0741B65B4E500FAF85F /* nt_fanCollision.m */; };
@@ -94,6 +94,8 @@
 		E154F7B81B9E28100070AF43 /* LevelCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LevelCollectionViewCell.m; sourceTree = "<group>"; };
 		E177F5391B67B71F0015A78D /* nt_coin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = nt_coin.h; sourceTree = "<group>"; };
 		E177F53A1B67B71F0015A78D /* nt_coin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = nt_coin.m; sourceTree = "<group>"; };
+		E18FB21D1BA08DAE003867B3 /* nt_goal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = nt_goal.h; sourceTree = "<group>"; };
+		E18FB21E1BA08DAE003867B3 /* nt_goal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = nt_goal.m; sourceTree = "<group>"; };
 		E1A7B34A1B9E209B00695E8D /* nt_filemanager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = nt_filemanager.h; sourceTree = "<group>"; };
 		E1A7B34B1B9E209B00695E8D /* nt_filemanager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = nt_filemanager.m; sourceTree = "<group>"; };
 		E1A7B34D1B9E20D000695E8D /* LevelController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LevelController.h; sourceTree = "<group>"; };
@@ -103,7 +105,6 @@
 		E1A7B3531B9E21FD00695E8D /* PackViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PackViewController.m; sourceTree = "<group>"; };
 		E1C21C9D1B9CB3E300F387F7 /* nt_level.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = nt_level.h; sourceTree = "<group>"; };
 		E1C21C9E1B9CB3E300F387F7 /* nt_level.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = nt_level.m; sourceTree = "<group>"; };
-		E1C21CA01B9CBADE00F387F7 /* 24.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = 24.plist; sourceTree = "<group>"; };
 		E1C21CA31B9CDF2E00F387F7 /* nt_alert.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = nt_alert.h; sourceTree = "<group>"; };
 		E1C21CA41B9CDF2E00F387F7 /* nt_alert.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = nt_alert.m; sourceTree = "<group>"; };
 		E1C21CA61B9CE3A400F387F7 /* UIImage+ImageEffects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+ImageEffects.h"; sourceTree = "<group>"; };
@@ -331,7 +332,6 @@
 			isa = PBXGroup;
 			children = (
 				E1A7B3501B9E20F800695E8D /* levels */,
-				E1C21CA01B9CBADE00F387F7 /* 24.plist */,
 				E1E034691B63255B00CFBC82 /* Media.xcassets */,
 			);
 			name = Resources;
@@ -350,6 +350,8 @@
 				E177F53A1B67B71F0015A78D /* nt_coin.m */,
 				E1D6F0761B65B50C00FAF85F /* nt_player.h */,
 				E1D6F0771B65B50C00FAF85F /* nt_player.m */,
+				E18FB21D1BA08DAE003867B3 /* nt_goal.h */,
+				E18FB21E1BA08DAE003867B3 /* nt_goal.m */,
 				E1D6F0731B65B4E500FAF85F /* nt_fanCollision.h */,
 				E1D6F0741B65B4E500FAF85F /* nt_fanCollision.m */,
 				E1DA0B531B65E90100904D35 /* nt_touch.h */,
@@ -468,7 +470,6 @@
 				E1E0346A1B63255B00CFBC82 /* Media.xcassets in Resources */,
 				E1E034361B63209F00CFBC82 /* GameScene.sks in Resources */,
 				E1E034411B63209F00CFBC82 /* LaunchScreen.storyboard in Resources */,
-				E1C21CA11B9CBADE00F387F7 /* 24.plist in Resources */,
 				E1E0343C1B63209F00CFBC82 /* Main.storyboard in Resources */,
 				E1A7B3511B9E20F800695E8D /* levels in Resources */,
 			);
@@ -507,6 +508,7 @@
 				E1286BB61B9D220E008704FD /* LevelEditorViewController.m in Sources */,
 				E1212EB71B666394002FD546 /* nt_wind.m in Sources */,
 				E1E034731B63305300CFBC82 /* nt_fan.m in Sources */,
+				E18FB21F1BA08DAE003867B3 /* nt_goal.m in Sources */,
 				E177F53B1B67B71F0015A78D /* nt_coin.m in Sources */,
 				E1E0346D1B6326D800CFBC82 /* nt_block.m in Sources */,
 				E1D6F0781B65B50C00FAF85F /* nt_player.m in Sources */,

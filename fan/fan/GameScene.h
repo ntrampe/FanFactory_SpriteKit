@@ -21,6 +21,7 @@
   NSMutableArray * m_gameTouches;
   
   nt_player* m_player;
+  SKConstraint* m_constraintPlayer;
 }
 
 

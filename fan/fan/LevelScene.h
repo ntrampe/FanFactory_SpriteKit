@@ -12,6 +12,7 @@
 #import "nt_block.h"
 #import "nt_coin.h"
 #import "nt_fan.h"
+#import "nt_goal.h"
 #import "nt_level.h"
 
 #define OBJECT_DISTANCE_THRESHOLD 65
@@ -19,6 +20,7 @@
 @interface LevelScene : ScrollingScene
 {
   NSMutableArray * m_objects;
+  nt_goal* m_goal;
 }
 
 + (instancetype)sceneWithLevel:(nt_level *)aLevel;

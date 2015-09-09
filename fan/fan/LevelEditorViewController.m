@@ -20,24 +20,29 @@
 {
   [super viewDidLoad];
   
-  NSDictionary * dict = [NSDictionary dictionaryWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"24" ofType:@"plist"]];
-  nt_level * l = [nt_level levelWithDictionary:dict];
-  
   m_levelView = [[SKView alloc] initWithFrame:self.view.frame];
   m_levelView.showsFPS = YES;
   m_levelView.showsNodeCount = YES;
-  
   m_levelView.ignoresSiblingOrder = YES;
-  
   m_levelView.multipleTouchEnabled = YES;
   
   [self.view addSubview:m_levelView];
   [self.view sendSubviewToBack:m_levelView];
   
-  LevelEditingScene *scene = [LevelEditingScene sceneWithLevel:nil];
-  scene.scaleMode = SKSceneScaleModeAspectFill;
+  nt_level * l = [nt_level levelWithObjects:nil length:1500];
+  LevelEditingScene *scene = [LevelEditingScene sceneWithLevel:l];
+  scene.scaleMode = SKSceneScaleModeResizeFill;
   
   [m_levelView presentScene:scene];
+}
+
+
+- (void)viewDidDisappear:(BOOL)animated
+{
+  [super viewDidDisappear:animated];
+  
+  [m_levelView removeFromSuperview];
+  m_levelView = nil;
 }
 
 

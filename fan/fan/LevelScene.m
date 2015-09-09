@@ -18,7 +18,20 @@
 
 - (instancetype)initWithLevel:(nt_level *)aLevel
 {
-  self = [super initWithSize:CGSizeMake((aLevel != nil ? aLevel.length : 1000), 1000)];
+  CGSize size = CGSizeMake(1500, 1000);
+  
+  if (aLevel != nil)
+  {
+    float highestPoint = 0;
+    
+    for (nt_object* o in aLevel.objects)
+      if (o.position.y > highestPoint)
+        highestPoint = o.position.y;
+    
+    size = CGSizeMake(aLevel.length, MAX(highestPoint, 500) + 100);
+  }
+  
+  self = [super initWithSize:size];
   
   if (self)
   { 
@@ -35,6 +48,12 @@
       }
     }
   }
+  
+  m_goal = [nt_goal goal];
+  
+  [m_goal setPosition:CGPointMake(self.frame.size.width - m_goal.frame.size.width / 2.0f, m_goal.frame.size.height / 2.0f)];
+  
+  [self addChild:m_goal];
   
   return self;
 }

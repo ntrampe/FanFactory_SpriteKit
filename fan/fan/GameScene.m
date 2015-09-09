@@ -38,10 +38,14 @@
     m_player = [nt_player playerWithPosition:CGPointMake(0, 0)];
     [self addObject:m_player];
     
-    self.camera.position = m_player.position;
+    m_constraintPlayer = [SKConstraint distance:[SKRange rangeWithLowerLimit:50 upperLimit:100] toNode:m_player];
     
-    SKConstraint *con = [SKConstraint distance:[SKRange rangeWithLowerLimit:0 upperLimit:0] toNode:self];
-    [[self camera] setConstraints:@[con]];
+    SKShapeNode* bounds = [SKShapeNode shapeNodeWithRect:CGRectMake(0, 0, self.frame.size.width, self.frame.size.height)];
+    [bounds setLineWidth:5.0];
+    [bounds setStrokeColor:[UIColor darkGrayColor]];
+    [self addChild:bounds];
+    
+    [self setZoom:2.0f];
     
     [self reset];
   }
@@ -52,14 +56,24 @@
 
 - (void)didMoveToView:(SKView *)view
 {
+  [super didMoveToView:view];
+  
   
 }
 
 
 - (void)start
-{
+{ 
   m_player.physicsBody.dynamic = YES;
   
+//  [m_camera runAction:[SKAction scaleTo:2.0f duration:1.0f]];
+//  [m_camera runAction:[SKAction moveTo:m_player.position duration:1.0f] completion:^
+//  {
+//    CGSize screenSize = [[UIScreen mainScreen] bounds].size;
+//    [m_camera setConstraints:[m_camera.constraints arrayByAddingObject:[SKConstraint distance:[SKRange rangeWithLowerLimit:-screenSize.width upperLimit:screenSize.width] toNode:m_player]]];
+//    
+//    m_player.physicsBody.dynamic = YES;
+//  }];
   
   for (nt_fan * f in self.fans)
   {
@@ -72,6 +86,12 @@
 {
   m_player.physicsBody.dynamic = NO;
   m_player.position = CGPointMake(131/2.0f, 238);
+  
+  [self setZoom:self.camera.xScale];
+  
+//  self.camera.position = m_player.position;
+  
+//  [self.camera runAction:[SKAction moveTo:m_player.position duration:1.0f]];
   
   for (nt_fan * f in self.fans)
   {
@@ -218,7 +238,7 @@
   [super touchesEnded:touches withEvent:event];
   
   if (m_panning == NO)
-  {
+  { 
     for (UITouch *touch in touches)
     {
       nt_touch * objtouch = nil;

@@ -1,20 +1,20 @@
 //
-//  nt_player.h
+//  nt_goal.h
 //  fan
 //
-//  Created by Nicholas Trampe on 7/26/15.
+//  Created by Nicholas Trampe on 9/9/15.
 //  Copyright © 2015 Off Kilter Studios. All rights reserved.
 //
 
 #import "nt_object.h"
 
-@interface nt_player : nt_object
+@interface nt_goal : nt_object
 {
   
 }
 
-+ (instancetype)playerWithPosition:(CGPoint)aPosition;
++ (instancetype)goal;
++ (instancetype)goalWithPosition:(CGPoint)aPosition;
 - (instancetype)initWithPosition:(CGPoint)aPosition;
-
 
 @end

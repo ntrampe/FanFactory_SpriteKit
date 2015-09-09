@@ -38,9 +38,17 @@
     m_bounds = [SKShapeNode shapeNodeWithRect:CGRectMake(0, 0, self.frame.size.width, self.frame.size.height)];
     [m_bounds setLineWidth:5.0];
     [self addChild:m_bounds];
+    
+    self.bounded = NO;
   }
   
   return self;
+}
+
+
+- (void)didMoveToView:(SKView *)view
+{
+  
 }
 
 

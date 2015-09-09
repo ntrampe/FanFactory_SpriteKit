@@ -51,8 +51,9 @@
   [super viewWillAppear:animated];
   
   GameScene *scene = [GameScene sceneWithLevel:m_level];
-  scene.scaleMode = SKSceneScaleModeAspectFill;
+  scene.scaleMode = SKSceneScaleModeResizeFill;
   
+  [m_gameView setFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
   [m_gameView presentScene:scene];
 }
 
@@ -61,7 +62,8 @@
 {
   [super viewDidDisappear:animated];
   
-  
+  [m_gameView removeFromSuperview];
+  m_gameView = nil;
 }
 
 
