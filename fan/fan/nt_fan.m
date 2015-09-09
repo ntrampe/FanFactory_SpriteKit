@@ -74,22 +74,22 @@
 {
   if (isAnimating)
   {
-    SKTextureAtlas * fanAtlas = [SKTextureAtlas atlasNamed:@"fan"];
-    NSMutableArray * fanImages = [NSMutableArray array];
-    
-    for (int i = 1; i <= fanAtlas.textureNames.count; i++)
-    {
-      NSString *textureName = [NSString stringWithFormat:@"fan_%i", i];
-      SKTexture *temp = [fanAtlas textureNamed:textureName];
-      [fanImages addObject:temp];
-    }
-    
-    
-    [self runAction:[SKAction repeatActionForever:
-                     [SKAction animateWithTextures:fanImages
-                                      timePerFrame:0.015f
-                                            resize:YES
-                                           restore:YES]] withKey:@"spinning"];
+//    SKTextureAtlas * fanAtlas = [SKTextureAtlas atlasNamed:@"fan"];
+//    NSMutableArray * fanImages = [NSMutableArray array];
+//    
+//    for (int i = 1; i <= fanAtlas.textureNames.count; i++)
+//    {
+//      NSString *textureName = [NSString stringWithFormat:@"fan_%i", i];
+//      SKTexture *temp = [fanAtlas textureNamed:textureName];
+//      [fanImages addObject:temp];
+//    }
+//    
+//    
+//    [self runAction:[SKAction repeatActionForever:
+//                     [SKAction animateWithTextures:fanImages
+//                                      timePerFrame:0.015f
+//                                            resize:YES
+//                                           restore:YES]] withKey:@"spinning"];
     
     m_arrow.alpha = 0.0f;
   }
@@ -110,20 +110,18 @@
 - (void)updateOnObject:(nt_object *)aObject
 {
   CGPoint p1 = self.position;
-  CGPoint p2 = aObject.position;
+  CGPoint p2 = self.arrowTipLocation;
   
-  float distance = sqrtf(powf(p1.x - p2.x, 2) + powf(p1.y - p2.y, 2))/2;
+  float distance = sqrtf(powf(p1.x - aObject.position.x, 2) + powf(p1.y - aObject.position.y, 2))/2;
   
-  CGVector vec = CGVectorMake(p1.x - p2.x, p1.y - p2.y);
+  CGVector vec = CGVectorMake(p2.x - p1.x, p2.y - p1.y);
+  vec = CGVectorMake(vec.dx / fabs(vec.dx), vec.dy / fabs(vec.dy));
   
-  CGFloat mag = sqrt((vec.dx * vec.dx) + 
-                     (vec.dy * vec.dy));
+  CGVector impulse = CGVectorMake(vec.dx, vec.dy);
   
-  CGVector impulse = CGVectorMake(vec.dx / mag, vec.dy / mag);
+  impulse = CGVectorMake((impulse.dx * m_power * 0) / distance, (impulse.dy * m_power * 50) / distance);
   
-  impulse = CGVectorMake(-(impulse.dx * m_power) / distance, -(impulse.dy * m_power) / distance);
-  
-  [aObject.physicsBody applyImpulse:impulse atPoint:aObject.position];
+  [aObject.physicsBody applyForce:impulse atPoint:aObject.position];
 }
 
 
