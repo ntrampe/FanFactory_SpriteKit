@@ -35,7 +35,7 @@
   
   if (self)
   { 
-    m_objects = [NSMutableArray array];
+    m_objects = [NSMutableSet set];
     
     self.physicsBody = [SKPhysicsBody bodyWithEdgeLoopFromRect:CGRectMake(0, 0, self.frame.size.width, self.frame.size.height)];
     self.physicsBody.dynamic = NO;
@@ -62,7 +62,7 @@
 - (void)addObject:(nt_object *)aObject
 {
   [m_objects addObject:aObject];
-  [self addChild:[m_objects lastObject]];
+  [self addChild:aObject];
 }
 
 
@@ -110,17 +110,32 @@
 }
 
 
-- (NSArray *)objects
+- (nt_level *)level
 {
-  NSArray * res = [NSArray arrayWithArray:m_objects];
+  NSMutableSet* objs = [NSMutableSet set];
+  
+  for (nt_object* o in m_objects)
+  {
+    nt_object* oc = [o copy];
+    oc.physicsBody = [o.physicsBody copy];
+    [objs addObject:oc];
+  }
+  
+  return [nt_level levelWithObjects:[NSSet setWithSet:objs] length:m_originalSize.width];
+}
+
+
+- (NSSet *)objects
+{
+  NSSet * res = [NSSet setWithSet:m_objects];
   
   return res;
 }
 
 
-- (NSArray *)fans
+- (NSSet *)fans
 {
-  NSMutableArray * res = [NSMutableArray array];
+  NSMutableSet * res = [NSMutableSet set];
   
   for (nt_object * o in m_objects)
   {
@@ -134,9 +149,9 @@
 }
 
 
-- (NSArray *)blocks
+- (NSSet *)blocks
 {
-  NSMutableArray * res = [NSMutableArray array];
+  NSMutableSet * res = [NSMutableSet set];
   
   for (nt_object * o in m_objects)
   {

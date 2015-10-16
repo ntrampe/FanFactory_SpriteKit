@@ -10,9 +10,10 @@
 #import <CoreGraphics/CoreGraphics.h>
 #import "types.h"
 
-@interface nt_object : SKSpriteNode
+@interface nt_object : SKSpriteNode <NSCopying>
 {
   SKSpriteNode * m_guide;
+  NSString* m_spriteName;
 }
 @property (strong) SKSpriteNode* guide;
 

@@ -38,5 +38,11 @@
   return self;
 }
 
+- (id)copyWithZone:(NSZone *)zone
+{
+  nt_player* copy = [nt_player playerWithPosition:self.position];
+  return copy;
+}
+
 
 @end

@@ -59,6 +59,13 @@
 }
 
 
+- (id)copyWithZone:(NSZone *)zone
+{
+  nt_fan* copy = [nt_fan fanWithPosition:self.position angle:self.zRotation];
+  return copy;
+}
+
+
 - (void)setPower:(float)aPower
 {
   m_power = aPower;
@@ -119,7 +126,7 @@
   
   CGVector impulse = CGVectorMake(vec.dx, vec.dy);
   
-  impulse = CGVectorMake((impulse.dx * m_power * 0) / distance, (impulse.dy * m_power * 50) / distance);
+  impulse = CGVectorMake((impulse.dx * m_power * 25) / distance, (impulse.dy * m_power * 50) / distance);
   
   [aObject.physicsBody applyForce:impulse atPoint:aObject.position];
 }

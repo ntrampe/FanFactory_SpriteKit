@@ -8,7 +8,7 @@
 
 #import "nt_object.h"
 
-@interface nt_player : nt_object
+@interface nt_player : nt_object <NSCopying>
 {
   
 }

@@ -8,18 +8,18 @@
 
 #import <Foundation/Foundation.h>
 
-@interface nt_level : NSObject
+@interface nt_level : NSObject <NSCopying>
 {
   float m_length;
-  NSMutableArray * m_objects;
+  NSMutableSet * m_objects;
 }
 @property (readwrite) float length;
-@property (strong) NSMutableArray * objects;
+@property (strong) NSMutableSet * objects;
 
-+ (instancetype)levelWithObjects:(NSArray *)aObjects length:(float)aLength;
++ (instancetype)levelWithObjects:(NSSet *)aObjects length:(float)aLength;
 + (instancetype)levelWithDictionary:(NSDictionary *)aDictionary;
 
-- (instancetype)initWithObjects:(NSArray *)aObjects length:(float)aLength;
+- (instancetype)initWithObjects:(NSSet *)aObjects length:(float)aLength;
 - (instancetype)initWithDictionary:(NSDictionary *)aDictionary;
 
 @end

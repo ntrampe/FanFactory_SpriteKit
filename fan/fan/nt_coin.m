@@ -34,4 +34,12 @@
   return self;
 }
 
+
+- (id)copyWithZone:(NSZone *)zone
+{
+  nt_coin* copy = [nt_coin coinWithPosition:self.position];
+  return copy;
+}
+
+
 @end

@@ -42,6 +42,12 @@
 - (void)addButtonWithImage:(NSString *)aImage block:(AlertButtonBlock)aBlock;
 - (void)addButtonWithImage:(NSString *)aImage;
 
+- (void)addButtonWithText:(NSString *)aText block:(AlertButtonBlock)aBlock shouldDismiss:(BOOL)aShouldDismiss;
+- (void)addButtonWithText:(NSString *)aText block:(AlertButtonBlock)aBlock;
+- (void)addButtonWithText:(NSString *)aText;
+
+- (void)addButton:(nt_alertButton *)aButton;
+
 - (void)showWithCompletion:(void (^)(void))aCompletion;
 - (void)dismissWithCompletion:(void (^)(void))aCompletion;
 - (void)show;

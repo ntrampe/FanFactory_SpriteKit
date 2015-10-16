@@ -31,9 +31,17 @@
     self.physicsBody = body;
     
     m_guide = nil;
+    m_spriteName = aName;
   }
   
   return self;
+}
+
+
+- (id)copyWithZone:(nullable NSZone *)zone
+{
+  nt_object* copy = [nt_object objectWithImageNamed:m_spriteName position:self.position angle:self.zRotation];
+  return copy;
 }
 
 

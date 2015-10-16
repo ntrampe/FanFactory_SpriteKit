@@ -8,7 +8,7 @@
 
 #import "nt_object.h"
 
-@interface nt_coin : nt_object
+@interface nt_coin : nt_object <NSCopying>
 {
   
 }

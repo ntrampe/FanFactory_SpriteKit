@@ -17,7 +17,7 @@
 @synthesize length = m_length;
 @synthesize objects = m_objects;
 
-+ (instancetype)levelWithObjects:(NSArray *)aObjects length:(float)aLength
++ (instancetype)levelWithObjects:(NSSet *)aObjects length:(float)aLength
 {
   return [[nt_level alloc] initWithObjects:aObjects length:aLength];
 }
@@ -29,13 +29,13 @@
 }
 
 
-- (instancetype)initWithObjects:(NSArray *)aObjects length:(float)aLength
+- (instancetype)initWithObjects:(NSSet *)aObjects length:(float)aLength
 {
   self = [super init];
   
   if (self)
   {
-    m_objects = [NSMutableArray arrayWithArray:aObjects];
+    m_objects = [NSMutableSet setWithSet:aObjects];
     m_length = aLength;
   }
   
@@ -50,7 +50,7 @@
   if (self)
   {
     m_length = [[aDictionary objectForKey:@"length"] floatValue];
-    m_objects = [NSMutableArray array];
+    m_objects = [NSMutableSet set];
     
     NSArray * objs = [aDictionary objectForKey:@"objects"];
     
@@ -84,6 +84,13 @@
   }
   
   return self;
+}
+
+
+- (id)copyWithZone:(nullable NSZone *)zone
+{
+  nt_level* copy = [nt_level levelWithObjects:m_objects length:m_length];
+  return copy;
 }
 
 

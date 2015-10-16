@@ -8,9 +8,11 @@
 
 #import "SubMenuViewController.h"
 
+#import "ParallaxScene.h"
+
 @interface StoreViewController : SubMenuViewController
 {
-  
+  ParallaxScene* m_background;
 }
 
 @end

@@ -102,13 +102,6 @@
 
 - (void)addButtonWithImage:(NSString *)aImage block:(AlertButtonBlock)aBlock shouldDismiss:(BOOL)aShouldDismiss
 {
-  if (m_buttonView == nil)
-  {
-    m_buttonView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 0, 0)];
-    m_buttonView.backgroundColor = [UIColor clearColor];
-    [m_containerView addSubview:m_buttonView];
-  }
-  
   UIImage * img = [UIImage imageNamed:aImage];
   nt_alertButton * button = [[nt_alertButton alloc] initWithFrame:CGRectMake(0, 0, img.size.width, img.size.height)];
   
@@ -118,8 +111,59 @@
   [button setBackgroundImage:img forState:UIControlStateNormal];
   [button setTag:m_buttons.count];
   
-  [m_buttonView addSubview:button];
-  [m_buttons addObject:button];
+  [self addButton:button];
+}
+
+
+- (void)addButtonWithImage:(NSString *)aImage block:(AlertButtonBlock)aBlock
+{
+  [self addButtonWithImage:aImage block:aBlock shouldDismiss:YES];
+}
+
+
+- (void)addButtonWithImage:(NSString *)aImage
+{
+  [self addButtonWithImage:aImage block:nil shouldDismiss:YES];
+}
+
+
+- (void)addButtonWithText:(NSString *)aText block:(AlertButtonBlock)aBlock shouldDismiss:(BOOL)aShouldDismiss
+{
+  nt_alertButton * button = [nt_alertButton buttonWithType:UIButtonTypeSystem];
+  
+  [button setTitle:aText forState:UIControlStateNormal];
+  [button addTarget:self action:@selector(buttonPressed:) forControlEvents:UIControlEventTouchUpInside];
+  [button setBlock:aBlock];
+  [button setShouldDismiss:aShouldDismiss];
+  [button setTag:m_buttons.count];
+  
+  [self addButton:button];
+}
+
+
+- (void)addButtonWithText:(NSString *)aText block:(AlertButtonBlock)aBlock
+{
+  [self addButtonWithText:aText block:aBlock shouldDismiss:YES];
+}
+
+
+- (void)addButtonWithText:(NSString *)aText
+{
+  [self addButtonWithText:aText block:nil shouldDismiss:YES];
+}
+
+
+- (void)addButton:(nt_alertButton *)aButton
+{
+  if (m_buttonView == nil)
+  {
+    m_buttonView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 0, 0)];
+    m_buttonView.backgroundColor = [UIColor clearColor];
+    [m_containerView addSubview:m_buttonView];
+  }
+  
+  [m_buttonView addSubview:aButton];
+  [m_buttons addObject:aButton];
   
   float offset = 10;
   float largestHeight = 0;
@@ -139,18 +183,6 @@
   [m_buttonView setCenter:CGPointMake(m_containerView.frame.size.width / 2.0f, m_buttonView.center.y)];
   
   [m_messageLabel setFrame:CGRectMake(m_messageLabel.frame.origin.x, m_messageLabel.frame.origin.y, m_messageLabel.frame.size.width, m_containerView.frame.size.height - largestHeight - 20 - 10)];
-}
-
-
-- (void)addButtonWithImage:(NSString *)aImage block:(AlertButtonBlock)aBlock
-{
-  [self addButtonWithImage:aImage block:aBlock shouldDismiss:YES];
-}
-
-
-- (void)addButtonWithImage:(NSString *)aImage
-{
-  [self addButtonWithImage:aImage block:nil shouldDismiss:YES];
 }
 
 

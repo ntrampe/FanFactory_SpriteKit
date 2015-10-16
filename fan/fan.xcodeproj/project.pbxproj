@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E11A77DD1BA336A9006F712B /* ParallaxView.m in Sources */ = {isa = PBXBuildFile; fileRef = E11A77DC1BA336A9006F712B /* ParallaxView.m */; settings = {ASSET_TAGS = (); }; };
+		E11A77E01BA336E6006F712B /* ParallaxObject.m in Sources */ = {isa = PBXBuildFile; fileRef = E11A77DF1BA336E6006F712B /* ParallaxObject.m */; settings = {ASSET_TAGS = (); }; };
 		E1212EB71B666394002FD546 /* nt_wind.m in Sources */ = {isa = PBXBuildFile; fileRef = E1212EB61B666394002FD546 /* nt_wind.m */; };
 		E125A6321B9DF449005669DD /* nt_touchEdit.m in Sources */ = {isa = PBXBuildFile; fileRef = E125A6311B9DF449005669DD /* nt_touchEdit.m */; settings = {ASSET_TAGS = (); }; };
 		E1286BA11B9D0897008704FD /* nt_alertButton.m in Sources */ = {isa = PBXBuildFile; fileRef = E1286BA01B9D0897008704FD /* nt_alertButton.m */; settings = {ASSET_TAGS = (); }; };
@@ -19,6 +21,7 @@
 		E1286BBC1B9D283A008704FD /* ItemSelectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = E1286BBB1B9D283A008704FD /* ItemSelectionView.m */; settings = {ASSET_TAGS = (); }; };
 		E1286BBF1B9D2BEE008704FD /* ScrollingScene.m in Sources */ = {isa = PBXBuildFile; fileRef = E1286BBE1B9D2BEE008704FD /* ScrollingScene.m */; settings = {ASSET_TAGS = (); }; };
 		E1286BC21B9D2DF1008704FD /* LevelScene.m in Sources */ = {isa = PBXBuildFile; fileRef = E1286BC11B9D2DF1008704FD /* LevelScene.m */; settings = {ASSET_TAGS = (); }; };
+		E13F61D91BA38FCE00E208B6 /* ParallaxScene.m in Sources */ = {isa = PBXBuildFile; fileRef = E13F61D81BA38FCE00E208B6 /* ParallaxScene.m */; settings = {ASSET_TAGS = (); }; };
 		E154F7B91B9E28100070AF43 /* LevelCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E154F7B81B9E28100070AF43 /* LevelCollectionViewCell.m */; settings = {ASSET_TAGS = (); }; };
 		E177F53B1B67B71F0015A78D /* nt_coin.m in Sources */ = {isa = PBXBuildFile; fileRef = E177F53A1B67B71F0015A78D /* nt_coin.m */; };
 		E18FB21F1BA08DAE003867B3 /* nt_goal.m in Sources */ = {isa = PBXBuildFile; fileRef = E18FB21E1BA08DAE003867B3 /* nt_goal.m */; settings = {ASSET_TAGS = (); }; };
@@ -66,6 +69,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		E11A77DB1BA336A9006F712B /* ParallaxView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ParallaxView.h; sourceTree = "<group>"; };
+		E11A77DC1BA336A9006F712B /* ParallaxView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ParallaxView.m; sourceTree = "<group>"; };
+		E11A77DE1BA336E6006F712B /* ParallaxObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ParallaxObject.h; sourceTree = "<group>"; };
+		E11A77DF1BA336E6006F712B /* ParallaxObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ParallaxObject.m; sourceTree = "<group>"; };
 		E1212EB51B666394002FD546 /* nt_wind.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = nt_wind.h; sourceTree = "<group>"; };
 		E1212EB61B666394002FD546 /* nt_wind.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = nt_wind.m; sourceTree = "<group>"; };
 		E125A6301B9DF449005669DD /* nt_touchEdit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = nt_touchEdit.h; sourceTree = "<group>"; };
@@ -90,6 +97,8 @@
 		E1286BBE1B9D2BEE008704FD /* ScrollingScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScrollingScene.m; sourceTree = "<group>"; };
 		E1286BC01B9D2DF1008704FD /* LevelScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LevelScene.h; sourceTree = "<group>"; };
 		E1286BC11B9D2DF1008704FD /* LevelScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LevelScene.m; sourceTree = "<group>"; };
+		E13F61D71BA38FCE00E208B6 /* ParallaxScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ParallaxScene.h; sourceTree = "<group>"; };
+		E13F61D81BA38FCE00E208B6 /* ParallaxScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ParallaxScene.m; sourceTree = "<group>"; };
 		E154F7B71B9E28100070AF43 /* LevelCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LevelCollectionViewCell.h; sourceTree = "<group>"; };
 		E154F7B81B9E28100070AF43 /* LevelCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LevelCollectionViewCell.m; sourceTree = "<group>"; };
 		E177F5391B67B71F0015A78D /* nt_coin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = nt_coin.h; sourceTree = "<group>"; };
@@ -182,6 +191,12 @@
 				E1E034351B63209F00CFBC82 /* GameScene.sks */,
 				E1E034371B63209F00CFBC82 /* GameViewController.h */,
 				E1E034381B63209F00CFBC82 /* GameViewController.m */,
+				E11A77DB1BA336A9006F712B /* ParallaxView.h */,
+				E11A77DC1BA336A9006F712B /* ParallaxView.m */,
+				E13F61D71BA38FCE00E208B6 /* ParallaxScene.h */,
+				E13F61D81BA38FCE00E208B6 /* ParallaxScene.m */,
+				E11A77DE1BA336E6006F712B /* ParallaxObject.h */,
+				E11A77DF1BA336E6006F712B /* ParallaxObject.m */,
 			);
 			name = Game;
 			sourceTree = "<group>";
@@ -511,16 +526,19 @@
 				E18FB21F1BA08DAE003867B3 /* nt_goal.m in Sources */,
 				E177F53B1B67B71F0015A78D /* nt_coin.m in Sources */,
 				E1E0346D1B6326D800CFBC82 /* nt_block.m in Sources */,
+				E13F61D91BA38FCE00E208B6 /* ParallaxScene.m in Sources */,
 				E1D6F0781B65B50C00FAF85F /* nt_player.m in Sources */,
 				E1286BAD1B9D1AB4008704FD /* CreateViewController.m in Sources */,
 				E1E034341B63209F00CFBC82 /* GameScene.m in Sources */,
 				E1A7B34C1B9E209B00695E8D /* nt_filemanager.m in Sources */,
 				E1286BC21B9D2DF1008704FD /* LevelScene.m in Sources */,
 				E1C21CA81B9CE3A400F387F7 /* UIImage+ImageEffects.m in Sources */,
+				E11A77E01BA336E6006F712B /* ParallaxObject.m in Sources */,
 				E1D6F0751B65B4E500FAF85F /* nt_fanCollision.m in Sources */,
 				E1A7B34F1B9E20D000695E8D /* LevelController.m in Sources */,
 				E125A6321B9DF449005669DD /* nt_touchEdit.m in Sources */,
 				E1C21CA51B9CDF2E00F387F7 /* nt_alert.m in Sources */,
+				E11A77DD1BA336A9006F712B /* ParallaxView.m in Sources */,
 				E1286BAA1B9D19BA008704FD /* SubMenuViewController.m in Sources */,
 				E1286BB91B9D277C008704FD /* LevelEditingScene.m in Sources */,
 				E1A7B3541B9E21FD00695E8D /* PackViewController.m in Sources */,

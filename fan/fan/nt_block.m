@@ -78,9 +78,17 @@
     body.contactTestBitMask = blockCategory | playerCategory | fanCategory;
     
     self.physicsBody = body;
+    m_type = aType;
   }
   
   return self;
+}
+
+
+- (id)copyWithZone:(nullable NSZone *)zone
+{
+  nt_block* copy = [nt_block blockWithType:m_type position:self.position angle:self.zRotation];
+  return copy;
 }
 
 

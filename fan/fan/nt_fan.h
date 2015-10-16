@@ -8,7 +8,7 @@
 
 #import "nt_object.h"
 
-@interface nt_fan : nt_object
+@interface nt_fan : nt_object <NSCopying>
 {
   float m_power;
   

@@ -19,7 +19,7 @@
 
 @interface LevelScene : ScrollingScene
 {
-  NSMutableArray * m_objects;
+  NSMutableSet * m_objects;
   nt_goal* m_goal;
 }
 
@@ -34,8 +34,9 @@
 
 - (nt_object *)objectClosestToTouch:(UITouch *)aTouch;
 
-- (NSArray *)objects;
-- (NSArray *)fans;
-- (NSArray *)blocks;
+- (nt_level *)level;
+- (NSSet *)objects;
+- (NSSet *)fans;
+- (NSSet *)blocks;
 
 @end

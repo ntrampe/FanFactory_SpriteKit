@@ -41,4 +41,11 @@
 }
 
 
+- (id)copyWithZone:(NSZone *)zone
+{
+  nt_goal* copy = [nt_goal goalWithPosition:self.position];
+  return copy;
+}
+
+
 @end

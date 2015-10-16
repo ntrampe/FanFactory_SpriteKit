@@ -8,9 +8,9 @@
 
 #import "nt_object.h"
 
-@interface nt_block : nt_object
+@interface nt_block : nt_object <NSCopying>
 {
-  
+  kBlockType m_type;
 }
 
 + (instancetype)blockWithType:(kBlockType)aType position:(CGPoint)aPosition angle:(CGFloat)aAngle;
